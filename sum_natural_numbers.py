@@ -1,4 +1,5 @@
-def recursive_sum(n:int, stack=[]) -> int:
+def recursive_sum(n:int, stack=None) -> int:
+    stack = [] if stack is None else stack
     stack.append(n)
 
     if n <= 1:

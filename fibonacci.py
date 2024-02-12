@@ -1,4 +1,5 @@
 def fib(n: int, cache=None) -> int:
+    cache = {} if cache is None else cache
     if n in (0, 1):
         return n
     
@@ -13,5 +14,5 @@ def fib(n: int, cache=None) -> int:
         return ret
 
 cache = {}
-print(fib(30, cache=cache))
+print(fib(30, cache=False))
 print(cache)

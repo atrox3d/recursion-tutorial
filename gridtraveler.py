@@ -1,4 +1,5 @@
-def gridtraveler(m: int, n: int, memo={}) -> int:
+def gridtraveler(m: int, n: int, memo:dict=None) -> int:
+    memo = {} if memo is None else memo
     try:
         key = (m, n)
         if key in memo:
@@ -18,13 +19,13 @@ def gridtraveler(m: int, n: int, memo={}) -> int:
 
     return ret
 
-print(gridtraveler(1, 1))
 
+print(gridtraveler(1, 1))
 print(gridtraveler(2, 3))
 
-memo = {}
-print(gridtraveler(3, 3, memo))
-print(memo)
+# memo = {}
+print(gridtraveler(3, 3))
+# print(memo)
 
 memo = {}
 print(gridtraveler(18, 18, memo))
