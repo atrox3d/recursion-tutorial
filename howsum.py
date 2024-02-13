@@ -1,5 +1,15 @@
 def howsum(targetsum: int, numbers: list, memo=None) -> list:
     '''
+    write a function howsum(targetsum, numbers) that takes in a
+    targetsum and an array of numbers as arguments
+
+    the function should return an array containing any combination
+    elements that add up to exactly the targetsum.
+    if there is no combination that satisfies, then return null
+
+    if there are multiple combinations possible, you may
+    return any single one
+
     brute force:
     time: O(len(numbers)^targetsum * targetsum)
     space: O(targetsum)

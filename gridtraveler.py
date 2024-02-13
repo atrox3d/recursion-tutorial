@@ -1,4 +1,15 @@
 def gridtraveler(m: int, n: int, memo:dict=None) -> int:
+    '''
+    Say that you have a traveler on a 2D grid.
+    You begin in the top-left corner and your goal is to
+    travel to the bottom-right corner.
+    you may only move down or right.
+
+    In how many ways can you travel to the goal on a grid with 
+    dimension m * n ?
+
+    write a function gridtraveler(m, n) that calculates this
+    '''
     memo = {} if memo is None else memo
     try:
         key = (m, n)
