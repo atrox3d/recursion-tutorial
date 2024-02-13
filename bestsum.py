@@ -8,18 +8,34 @@ def bestsum(targetsum: int, numbers: list, memo=None) -> list:
 
     if there is a tie for the shortest combination, you may return
     any one of the shortest
+
+    brute force:
+    time: O(len(numbers)^targetsum * targetsum)
+    space: O(targetsum^2)
+
     '''
+    memo = {} if memo is None else memo
+    try:
+        return memo[targetsum]
+    except:
+        pass
+
     if targetsum == 0: return []
     if targetsum <0: return None
 
     shortest = None
     for num in numbers:
         remainder = targetsum - num
-        result = bestsum(remainder, numbers)
+        result = bestsum(remainder, numbers, memo)
         if result is not None:
             combo = [*result, num]
             if shortest is None or len(combo) < len(shortest):
                 shortest = combo
+    try:
+        memo[targetsum] = shortest
+    except:
+        pass
+
     return shortest
 
 data = (
@@ -30,7 +46,7 @@ data = (
 )
 
 for targetsum, numbers in data:
-    outer_memo = None
+    outer_memo = {}
     array = bestsum(targetsum, numbers, outer_memo)
     print(f'{array = }')
     print(f'{outer_memo = }')
