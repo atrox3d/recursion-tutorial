@@ -43,7 +43,9 @@ data = (
 
 for targetsum, numbers in data:
     outer_memo = {}
-    array = howsum(targetsum, numbers, outer_memo)
-    print(f'{array = }')
+    result = howsum(targetsum, numbers, outer_memo)
+    print(f'{targetsum = }')
+    print(f'{numbers = }')
+    print(f'{result = }')
     print(f'{outer_memo = }')
-    assert array is None or sum(array) == targetsum
+    assert result is None or sum(result) == targetsum

@@ -13,6 +13,10 @@ def bestsum(targetsum: int, numbers: list, memo=None) -> list:
     time: O(len(numbers)^targetsum * targetsum)
     space: O(targetsum^2)
 
+    memoized:
+    time: O(targetsum^2 * len(numbers))
+    space: O(targetsum^2)
+
     '''
     memo = {} if memo is None else memo
     try:
@@ -47,7 +51,8 @@ data = (
 
 for targetsum, numbers in data:
     outer_memo = {}
-    array = bestsum(targetsum, numbers, outer_memo)
-    print(f'{array = }')
+    result = bestsum(targetsum, numbers, outer_memo)
+    print(f'{targetsum = }')
+    print(f'{numbers = }')
+    print(f'{result = }')
     print(f'{outer_memo = }')
-    # assert array is None or sum(array) == targetsum
