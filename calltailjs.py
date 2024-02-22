@@ -6,21 +6,28 @@ def iter_sumnats(n):
     problems:
     - verbose cose, describing each step (imperative)
     '''
-    result = 0
+    result = 0      # tail call default parameter
+    
     while n >= 1:
-        result = result + n
-        n = n - 1
+        result = result + n         
+                    #  |
+                    #  +-> tail call param update
+                    #  +-> linear return
+        
+        n = n - 1                   # recursive param update
     return result
 
 def linear_sumnats(n):              # n = initial value
     if n <= 0:                      # base case
         return 0
     return n + linear_sumnats(n-1)  # recursive case
+        #    |                 |
+        #    |                 +-> while decrease
+        #    +-> while accumulator
 
 def tailcall_sumnats(n, result=0):
-                #    |      |
-                #    |      +-> while init
-                #    +-> linear base case
+                        # |
+                        # +-> while init
 
     if n <= 0:                      # -> linear base case 
         return result               # -> linear base case return
@@ -29,7 +36,6 @@ def tailcall_sumnats(n, result=0):
                         #    |      |
                         #    |      +-> while accumulator
                         #    |      +-> linear return
-                        #    |
                         #    +-> while decrease
                         #    +-> linear decrease 
 
