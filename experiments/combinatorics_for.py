@@ -54,7 +54,11 @@ def f(sum, k):
     tups = f(sum, k-1)
     log(f'RECURSIVE CASE: {tups=}')
     for tup in tups:
+        log(f'RECURSIVE CASE: {tup=}')
+        log(f'RECURSIVE CASE: {tup[-1]=}')
+        log(f'RECURSIVE CASE: abs=f(sum={tup[-1]}, "2")')
         abs = f(tup[-1], 2)
+        log(f'RECURSIVE CASE: {abs=}')
         for ab in abs:
             ret.append(tup[:-1] + ab)
     return ret
@@ -63,4 +67,4 @@ if __name__ == '__main__':
     LOGGERMETHOD = logger.debug
 
     logging.basicConfig(level='DEBUG', format='%(message)s')
-    print(f(10, 2))
+    print(f(4, 3))
