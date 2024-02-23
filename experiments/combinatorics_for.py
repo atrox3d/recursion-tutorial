@@ -9,12 +9,6 @@ INDENT = None
 
 LOGGERMETHOD = logger.debug
 
-def getindent():
-    global INDENTLEVEL, INDENT, INDENTSTEP
-    INDENTLEVEL = 0 if INDENTLEVEL is None else INDENTLEVEL+INDENTSTEP
-    INDENT = INDENTLEVEL * INDENTCHAR
-    return INDENT
-
 def log(message, loggermethod=LOGGERMETHOD):
     message = f'{INDENT}{message}'
     loggermethod(message)
@@ -73,8 +67,10 @@ def f(sum, k):
         log(f'RECURSIVE CASE: {tup[-1]=}')
         log(f'RECURSIVE CASE: abs=f(sum={tup[-1]}, "2")')
         abs = f(tup[-1], 2)
-        log(f'RECURSIVE CASE: {abs=}')
         for ab in abs:
+            log(f'RECURSIVE CASE: {ab=}')
+            log(f'RECURSIVE CASE: {tup[:-1]=}')
+            log(f'RECURSIVE CASE: {tup[:-1]+ab=}')
             ret.append(tup[:-1] + ab)
     return ret
 
