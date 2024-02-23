@@ -39,10 +39,9 @@ def f(sum, k):
         log(f'BASE CASE: return [(i,{sum}-i) for i in range(1, {sum}-{k}+2)]')
         # ret = [(i,sum-i) for i in range(1, sum-k+2)]
         ret = []
-        for i in range(1, sum-k+2):
-            log(f'BASE CASE: {i=}')
-            log(f'BASE CASE: {sum-i=}')
-            combo = (i, sum-i)
+        # for i in range(1, sum-k+2):
+        for i, j in zip(range(1, sum), range(sum-1, 0, -1)):
+            combo = (i, j)
             log(f'BASE CASE: {combo=}')
             ret.append(combo)
         log(f'BASE CASE: return {ret}')
@@ -64,4 +63,4 @@ if __name__ == '__main__':
     LOGGERMETHOD = logger.debug
 
     logging.basicConfig(level='DEBUG', format='%(message)s')
-    print(f(5, 2))
+    print(f(10, 2))
