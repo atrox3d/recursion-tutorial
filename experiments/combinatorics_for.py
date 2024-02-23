@@ -3,8 +3,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 INDENTLEVEL = None
-INDENTSTEP = 2
-INDENTCHAR = '.'
+INDENTSTEP = 4
+INDENTCHAR = ' '
 INDENT = None
 
 LOGGERMETHOD = logger.debug
@@ -19,12 +19,27 @@ def log(message, loggermethod=LOGGERMETHOD):
     message = f'{INDENT}{message}'
     loggermethod(message)
 
+def indented(func):
+    def wrapper(*args, **kwargs):
+        global INDENTLEVEL, INDENT, INDENTSTEP
+        if INDENTLEVEL is None:
+            INDENTLEVEL = 0
+        else:
+            INDENTLEVEL += INDENTSTEP
+        INDENT = INDENTLEVEL * INDENTCHAR
+        ret = func(*args, **kwargs)
+        if INDENTLEVEL > 0:
+            INDENTLEVEL -= INDENTSTEP
+            INDENT = INDENTLEVEL * INDENTCHAR
+        return ret
+    return wrapper
+
+@indented
 def f(sum, k):
     '''
     good.
     https://stackoverflow.com/a/74454054
     '''
-    INDENT = getindent()
     if k < 1:
         log(f'BASE CASE: {sum=}, {k=}')
         log(f'BASE CASE: {k} < 1, return []')
@@ -67,4 +82,12 @@ if __name__ == '__main__':
     LOGGERMETHOD = logger.debug
 
     logging.basicConfig(level='DEBUG', format='%(message)s')
+    # @indented
+    # def rec(n):
+        # log(n)
+        # if n == 0:
+            # return
+        # rec(n-1)
+    # rec(5)
+    # 
     print(f(4, 3))
