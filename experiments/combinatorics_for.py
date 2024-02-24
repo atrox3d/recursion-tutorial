@@ -29,16 +29,16 @@ def indented(func):
     return wrapper
 
 @indented
-def f(sum, k):
+def f(sum, k, start=0):
     '''
     good.
     https://stackoverflow.com/a/74454054
     '''
-    if k < 1:
+    if k < start:
         log(f'BASE CASE: {sum=}, {k=}')
         log(f'BASE CASE: {k} < 1, return []')
         return []
-    if k == 1:
+    if k == start:
         log(f'BASE CASE: {sum=}, {k=}')
         log(f'BASE CASE: k == {k} , return [({sum=},)]')
         return [(sum,)]
@@ -49,7 +49,7 @@ def f(sum, k):
         # ret = [(i,sum-i) for i in range(1, sum-k+2)]
         ret = []
         # for i in range(1, sum-k+2):
-        for i, j in zip(range(1, sum), range(sum-1, 0, -1)):
+        for i, j in zip(range(start, sum-k+2+1), range(sum-k+2, start-1, -1)):
             combo = (i, j)
             log(f'BASE CASE: {combo=}')
             ret.append(combo)
@@ -86,4 +86,5 @@ if __name__ == '__main__':
         # rec(n-1)
     # rec(5)
     # 
-    print(f(4, 3))
+    # print(f(4, 3))
+    print(f(4, 2))
