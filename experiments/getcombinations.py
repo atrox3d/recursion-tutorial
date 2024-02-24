@@ -10,12 +10,12 @@ def get_combinations(target, num_elements, combinations=None, start=0):
             # Return this combination of numbers
             yield tuple(combinations)
     else:
-        # The combination of numbers doesn't yet total to target value
-        # Iterate over each number from 1 to the target value 
-        for number in range(start, target + 1):
-            # Check that neither the target value nor number of elements will be exceeded
-            if combinations_sum + number <= target:
-                if len(combinations) < num_elements:
+        if len(combinations) < num_elements:
+            # The combination of numbers doesn't yet total to target value
+            # Iterate over each number from 1 to the target value 
+            for number in range(start, target + 1):
+                # Check that neither the target value nor number of elements will be exceeded
+                if combinations_sum + number <= target:
                     # Add the number to the list
                     new_combo = combinations + [number]
                     # Find all solutions for the list
