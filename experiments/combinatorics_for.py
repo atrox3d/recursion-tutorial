@@ -29,7 +29,7 @@ def indented(func):
     return wrapper
 
 @indented
-def f(total, columns, start=0):
+def combos_for_total(total, columns, start=0):
     '''
     good.
     https://stackoverflow.com/a/74454054
@@ -60,13 +60,13 @@ def f(total, columns, start=0):
     # ret = [tup[:-1] + ab for tup in f(sum, k-1) for ab in f(tup[-1], 2)]
     ret = []
     log(f'RECURSIVE CASE: tups = f(sum={total}, k=({columns}-1))')
-    tups = f(total, columns-1)
+    tups = combos_for_total(total, columns-1)
     log(f'RECURSIVE CASE: {tups=}')
     for tup in tups:
         log(f'RECURSIVE CASE: {tup=}')
         log(f'RECURSIVE CASE: {tup[-1]=}')
         log(f'RECURSIVE CASE: abs=f(sum={tup[-1]}, "2")')
-        abs = f(tup[-1], 2)
+        abs = combos_for_total(tup[-1], 2)
         for ab in abs:
             log(f'RECURSIVE CASE: {ab=}')
             log(f'RECURSIVE CASE: {tup[:-1]=}')
@@ -87,4 +87,4 @@ if __name__ == '__main__':
     # rec(5)
     # 
     # print(f(4, 3))
-    print(f(4, 2))
+    print(combos_for_total(4, 2))
