@@ -1,4 +1,4 @@
-def get_combinations(target, num_elements, combinations=None, start=1):
+def get_combinations(target, num_elements, combinations=None, start=0):
     # Initialise an empty list
     if combinations == None:
         combinations = []
@@ -20,5 +20,6 @@ def get_combinations(target, num_elements, combinations=None, start=1):
                 # Find all solutions for the list
                 for c in get_combinations(target, num_elements, new_combo):
                     yield c
+
 
 print(list(get_combinations(4, 2)))
