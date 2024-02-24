@@ -2,21 +2,21 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def f(sum, k, start=0):
+def f(total, columns, start=0):
     '''
     good.
     https://stackoverflow.com/a/74454054
     '''
-    if k < start:
+    if columns < start:
         return []
-    if k == start:
-        return [(sum,)]
-    if k == 2:
-        ret = [(i,sum-i) for i in range(start, sum-k+2+1)]
+    if columns == start:
+        return [(total,)]
+    if columns == 2:
+        ret = [(i,total-i) for i in range(start, total-columns+2+1)]
         return ret
     
     return [tup[:-1] + ab 
-            for tup in f(sum, k-1) 
+            for tup in f(total, columns-1) 
             for ab in f(tup[-1], 2)]
 
 if __name__ == '__main__':

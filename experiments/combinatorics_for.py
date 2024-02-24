@@ -29,38 +29,38 @@ def indented(func):
     return wrapper
 
 @indented
-def f(sum, k, start=0):
+def f(total, columns, start=0):
     '''
     good.
     https://stackoverflow.com/a/74454054
     '''
-    if k < start:
-        log(f'BASE CASE: {sum=}, {k=}')
-        log(f'BASE CASE: {k} < 1, return []')
+    if columns < start:
+        log(f'BASE CASE: {total=}, {columns=}')
+        log(f'BASE CASE: {columns} < 1, return []')
         return []
-    if k == start:
-        log(f'BASE CASE: {sum=}, {k=}')
-        log(f'BASE CASE: k == {k} , return [({sum=},)]')
-        return [(sum,)]
-    if k == 2:
-        log(f'BASE CASE: {sum=}, {k=}')
-        log(f'BASE CASE: k == {k}')
-        log(f'BASE CASE: return [(i,{sum}-i) for i in range(1, {sum}-{k}+2)]')
+    if columns == start:
+        log(f'BASE CASE: {total=}, {columns=}')
+        log(f'BASE CASE: k == {columns} , return [({total=},)]')
+        return [(total,)]
+    if columns == 2:
+        log(f'BASE CASE: {total=}, {columns=}')
+        log(f'BASE CASE: k == {columns}')
+        log(f'BASE CASE: return [(i,{total}-i) for i in range(1, {total}-{columns}+2)]')
         # ret = [(i,sum-i) for i in range(1, sum-k+2)]
         ret = []
         # for i in range(1, sum-k+2):
-        for i, j in zip(range(start, sum-k+2+1), range(sum-k+2, start-1, -1)):
+        for i, j in zip(range(start, total-columns+2+1), range(total-columns+2, start-1, -1)):
             combo = (i, j)
             log(f'BASE CASE: {combo=}')
             ret.append(combo)
         log(f'BASE CASE: return {ret}')
         return ret
     
-    log(f'RECURSIVE CASE: {sum=}, {k=}')
+    log(f'RECURSIVE CASE: {total=}, {columns=}')
     # ret = [tup[:-1] + ab for tup in f(sum, k-1) for ab in f(tup[-1], 2)]
     ret = []
-    log(f'RECURSIVE CASE: tups = f(sum={sum}, k=({k}-1))')
-    tups = f(sum, k-1)
+    log(f'RECURSIVE CASE: tups = f(sum={total}, k=({columns}-1))')
+    tups = f(total, columns-1)
     log(f'RECURSIVE CASE: {tups=}')
     for tup in tups:
         log(f'RECURSIVE CASE: {tup=}')
