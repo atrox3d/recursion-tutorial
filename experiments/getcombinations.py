@@ -18,14 +18,17 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                 # Add the number to the list
                 new_combo = combinations + [number]
                 # Find all solutions for the list
-                for c in get_combinations(target, num_elements, new_combo):
+                temp = list(get_combinations(target, num_elements, new_combo))
+                for c in temp:
                     yield c
 
 if __name__ == '__main__':
     from pathlib import Path
     import sys
     import logging
-    
+
+    print(list(get_combinations(4, 2)))
+
     if False:
         LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
         handlers = [logging.FileHandler(LOGFILE, mode='w'), logging.StreamHandler()]
