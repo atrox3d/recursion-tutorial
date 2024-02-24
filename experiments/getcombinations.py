@@ -19,6 +19,7 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                     # Add the number to the list
                     new_combo = combinations + [number]
                     # Find all solutions for the list
+                    # empty generator == []
                     temp = list(get_combinations(target, num_elements, new_combo))
                     for c in temp:
                         yield c
