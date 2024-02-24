@@ -21,5 +21,19 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                 for c in get_combinations(target, num_elements, new_combo):
                     yield c
 
-
-print(list(get_combinations(4, 2)))
+if __name__ == '__main__':
+    from pathlib import Path
+    import sys
+    import logging
+    
+    if False:
+        LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
+        handlers = [logging.FileHandler(LOGFILE, mode='w'), logging.StreamHandler()]
+        
+        logging.basicConfig(level='INFO', format='%(message)s', handlers=handlers)
+        logger = logging.getLogger(__name__)
+        
+        # print(f(4, 3))
+        print(list(get_combinations(4, 2)))
+        for combo in get_combinations(100, 4):
+            logger.info(combo)

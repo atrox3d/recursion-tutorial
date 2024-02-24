@@ -78,18 +78,19 @@ if __name__ == '__main__':
     from pathlib import Path
     import sys
     LOGGERMETHOD = logger.debug
-    LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
-    handlers = [
-        logging.FileHandler(LOGFILE, mode='w'),
-        logging.StreamHandler()
-    ]
+    if False:
+        LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
+        handlers = [
+            logging.FileHandler(LOGFILE, mode='w'),
+            logging.StreamHandler()
+        ]
 
-    logging.basicConfig(level='INFO', format='%(message)s', handlers=handlers)
-    # print(f(4, 3))
-    combos = combos_for_total(100, 4)
-    for combo in combos:
-        logger.info(combo)
-    print(len(combos))
-    combos_set = set(combos)
-    print(len(combos_set))
+        logging.basicConfig(level='INFO', format='%(message)s', handlers=handlers)
+        # print(f(4, 3))
+        combos = combos_for_total(100, 4)
+        for combo in combos:
+            logger.info(combo)
+        print(len(combos))
+        combos_set = set(combos)
+        print(len(combos_set))
     
