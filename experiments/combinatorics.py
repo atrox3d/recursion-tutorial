@@ -12,7 +12,7 @@ def f(sum, k, start=0):
     if k == start:
         return [(sum,)]
     if k == 2:
-        ret = [(i,sum-i) for i in range(start, sum-k+2)]
+        ret = [(i,sum-i) for i in range(start, sum-k+2+1)]
         return ret
     
     return [tup[:-1] + ab 
@@ -21,4 +21,5 @@ def f(sum, k, start=0):
 
 if __name__ == '__main__':
     logging.basicConfig(level='DEBUG', format='%(message)s')
-    print(f(5, 4))
+    # print(f(5, 4))
+    print(f(4, 2))
