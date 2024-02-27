@@ -8,9 +8,8 @@ def get_combinations(target, num_elements, combinations=None, start=0):
     if combinations_sum == target:
         if len(combinations) == num_elements:
             # Return this combination of numbers
-            return [tuple(combinations)]
+            yield tuple(combinations)
     else:
-        combos = []
         if len(combinations) < num_elements:
             # The combination of numbers doesn't yet total to target value
             # Iterate over each number from 1 to the target value 
@@ -21,23 +20,16 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                     new_combo = combinations + [number]
                     # Find all solutions for the list
                     # empty generator == []
-                    # temp = list(get_combinations(target, num_elements, new_combo))
-                    temp = get_combinations(target, num_elements, new_combo)
-                    # temp = [] if temp is None else temp
-                    # temp = [temp] if isinstance(temp, tuple) else temp
-                    # for c in temp:
-                        # return c
-                    if temp:
-                        for t in temp:
-                            combos.append(t)
-        return combos
+                    temp = list(get_combinations(target, num_elements, new_combo))
+                    for c in temp:
+                        yield c
+
 if __name__ == '__main__':
     from pathlib import Path
     import sys
     import logging
 
-    combos = get_combinations(100, 4)
-    print(len(combos))
+    print(list(get_combinations(4, 3)))
 
     if False:
         LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
