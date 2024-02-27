@@ -8,7 +8,7 @@ def get_combinations(target, num_elements, combinations=None, start=0):
     if combinations_sum == target:
         if len(combinations) == num_elements:
             # Return this combination of numbers
-            yield tuple(combinations)
+            return [tuple(combinations)]
     else:
         if len(combinations) < num_elements:
             # The combination of numbers doesn't yet total to target value
@@ -20,9 +20,12 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                     new_combo = combinations + [number]
                     # Find all solutions for the list
                     # empty generator == []
-                    temp = list(get_combinations(target, num_elements, new_combo))
+                    # temp = list(get_combinations(target, num_elements, new_combo))
+                    temp = get_combinations(target, num_elements, new_combo)
+                    temp = [] if temp is None else temp
+                    temp = [temp] if isinstance(temp, tuple) else temp
                     for c in temp:
-                        yield c
+                        return c
 
 if __name__ == '__main__':
     from pathlib import Path
