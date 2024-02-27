@@ -36,7 +36,7 @@ if __name__ == '__main__':
     import sys
     import logging
 
-    print(list(get_combinations(4, 3)))
+    print(get_combinations(4, 3))
 
     if False:
         LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
