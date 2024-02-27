@@ -10,6 +10,7 @@ def get_combinations(target, num_elements, combinations=None, start=0):
             # Return this combination of numbers
             return [tuple(combinations)]
     else:
+        combos = []
         if len(combinations) < num_elements:
             # The combination of numbers doesn't yet total to target value
             # Iterate over each number from 1 to the target value 
@@ -22,11 +23,14 @@ def get_combinations(target, num_elements, combinations=None, start=0):
                     # empty generator == []
                     # temp = list(get_combinations(target, num_elements, new_combo))
                     temp = get_combinations(target, num_elements, new_combo)
-                    temp = [] if temp is None else temp
-                    temp = [temp] if isinstance(temp, tuple) else temp
-                    for c in temp:
-                        return c
-
+                    # temp = [] if temp is None else temp
+                    # temp = [temp] if isinstance(temp, tuple) else temp
+                    # for c in temp:
+                        # return c
+                    if temp:
+                        for t in temp:
+                            combos.append(t)
+        return combos
 if __name__ == '__main__':
     from pathlib import Path
     import sys
