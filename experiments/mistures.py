@@ -30,9 +30,9 @@ def mixtures_list(total: int, columns: int):
 
 
 if __name__ == '__main__':
-    mix1 = list(mixtures(4, 3))
-    mix2 = mixtures_list(3, 4)
-    # print(mix2)
-    # print(len(mix2))
+    mix1 = list(mixtures(3, 4))
+    mix2 = mixtures_list(4, 3)
+    print(mix2)
+    print(len(mix2))
     assert mix1 == mix2
     print('ok')
