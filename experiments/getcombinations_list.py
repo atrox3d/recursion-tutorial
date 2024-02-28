@@ -36,8 +36,9 @@ if __name__ == '__main__':
     import sys
     import logging
 
-    combos = get_combinations(100, 4)
+    combos = get_combinations(4, 3)
     print(len(combos))
+    print(combos)
 
     if False:
         LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
