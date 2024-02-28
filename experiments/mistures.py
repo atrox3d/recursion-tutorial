@@ -12,8 +12,8 @@ def mixtures(n: int, total: int):
         else:
             yield [i]
 
-def mixtures_list(total: int, n: int):
-    if n == 1:
+def mixtures_list(total: int, columns: int):
+    if columns == 1:
         start = total
     else:
         start = 0
@@ -21,8 +21,8 @@ def mixtures_list(total: int, n: int):
     combos = []
     for i in range(start, total + 1):
         left = total - i
-        if n - 1:
-            for y in mixtures_list(left, n - 1):
+        if columns - 1:
+            for y in mixtures_list(left, columns - 1):
                 combos.append([i] + y)
         else:
             combos.append([i])
