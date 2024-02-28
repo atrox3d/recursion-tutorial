@@ -22,7 +22,7 @@ def mixtures_list(n: int, total: int):
     for i in range(start, total + 1):
         left = total - i
         if n - 1:
-            for y in mixtures(n - 1, left):
+            for y in mixtures_list(n - 1, left):
                 combos.append([i] + y)
         else:
             combos.append([i])
@@ -32,6 +32,6 @@ def mixtures_list(n: int, total: int):
 if __name__ == '__main__':
     mix1 = list(mixtures(4, 3))
     mix2 = mixtures_list(4, 3)
-    # print(mix)
-    # print(len(mix))
+    # print(mix2)
+    # print(len(mix2))
     assert mix1 == mix2
