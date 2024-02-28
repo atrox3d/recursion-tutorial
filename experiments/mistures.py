@@ -23,8 +23,8 @@ def mixtures_list(total: int, columns: int, level=0):
         left = total - spoon
         if columns - 1:
             mixes = mixtures_list(left, columns - 1, level+1)
-            for y in mixes:
-                combos.append([spoon] + y)
+            for mix in mixes:
+                combos.append([spoon] + mix)
         else:
             combos.append([spoon])
     return combos
