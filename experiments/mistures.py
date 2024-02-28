@@ -11,3 +11,9 @@ def mixtures(n: int, total: int):
                 yield [i] + y
         else:
             yield [i]
+
+
+if __name__ == '__main__':
+    mix = list(mixtures(4, 3))
+    print(mix)
+    print(len(mix))
