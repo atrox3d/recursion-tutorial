@@ -12,21 +12,21 @@ def mixtures(total: int, columns: int):
         else:
             yield [i]
 
-def mixtures_list(total: int, columns: int, level=0):
-    if columns == 1:
+def mixtures_list(total: int, ingredients: int, level=0):
+    if ingredients == 1:
         start = total
     else:
         start = 0
 
     combos = []
-    for spoon in range(start, total + 1):
-        left = total - spoon
-        if columns - 1:
-            mixes = mixtures_list(left, columns - 1, level+1)
+    for spoons in range(start, total + 1):
+        left = total - spoons
+        if ingredients - 1 > 0:
+            mixes = mixtures_list(left, ingredients - 1, level+1)
             for mix in mixes:
-                combos.append([spoon] + mix)
+                combos.append([spoons] + mix)
         else:
-            combos.append([spoon])
+            combos.append([spoons])
     return combos
 
 
