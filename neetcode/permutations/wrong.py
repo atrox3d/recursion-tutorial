@@ -1,27 +1,21 @@
 def perms(nums:list, cast=tuple, duplicates=False, sort=True, reverse=True):
     def _perms(nums: list[int], level=0) -> list[list[int]]:
-        # print(f'wrong: {level, nums = }')
         result = []
-        # base case
-        if len(nums) == 1:
-            return [nums[:]]
+        if len(nums) == 1: return [nums[:]] # base case
         
         for i, value in enumerate(nums):
-            '''
-            in every loop value must not be inside the array
-            '''
-            # comprehension
+            ''' in every loop value must not be inside the array '''
+            # comprehension (removes duplicates)
             new_nums = [n for n in nums if n != value]
             # slice
             new_nums = nums[:i] + nums[i+1:]
             perms = _perms(new_nums, level+1)
-
             for perm in perms:
                 perm.append(value)
             result.extend(perms)
         return result
+    
     result = _perms(nums)
-
     if not duplicates:
         result = list(set([tuple(perm) for perm in result]))
     result = [cast(perm) for perm in result]
