@@ -1,4 +1,4 @@
-def wrong(nums: list[int], level=0) -> list[list[int]]:
+def fixed(nums: list[int], level=0) -> list[list[int]]:
     print(f'wrong: {level, nums = }')
     result = []
     # base case
@@ -6,7 +6,9 @@ def wrong(nums: list[int], level=0) -> list[list[int]]:
         return [nums[:]]
     
     for i, value in enumerate(nums):
-        perms = wrong(nums[:i] + nums[i+1:], level+1)
+        new_nums = nums[:i] + nums[i+1:]
+        new_nums = [n for n in nums if n != value]
+        perms = fixed(new_nums, level+1)
 
         for perm in perms:
             perm.append(value)
@@ -16,4 +18,4 @@ def wrong(nums: list[int], level=0) -> list[list[int]]:
 if __name__ == '__main__':
     nums = [1, 2, 3]
     print(nums)
-    print(perms1:=wrong(nums))
+    print(perms1:=fixed(nums))

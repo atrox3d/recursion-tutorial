@@ -16,10 +16,11 @@ def permute(nums: list[int], level=0) -> list[list[int]]:
     return result
 
 if __name__ == '__main__':
-    from wrong import wrong
+    from wrong import fixed
     nums = [1, 2, 3]
     print(nums)
     print(perms1:=permute(nums))
-    print(perms2:=wrong(nums))
+    print(perms2:=fixed(nums))
 
     assert sorted(perms1) == sorted(perms2)
+    print('ok')
