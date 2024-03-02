@@ -6,7 +6,12 @@ def fixed(nums: list[int], level=0) -> list[list[int]]:
         return [nums[:]]
     
     for i, value in enumerate(nums):
+        '''
+        in every loop value must not be inside the array
+        '''
+        # slice
         new_nums = nums[:i] + nums[i+1:]
+        # comprehension
         new_nums = [n for n in nums if n != value]
         perms = fixed(new_nums, level+1)
 
