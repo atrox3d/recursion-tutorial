@@ -6,10 +6,9 @@ def perms(nums:list, cast=tuple, duplicates=False, sort=True, reverse=True):
         for i, value in enumerate(nums):
             # in every loop value must not be inside the array
             new_nums = nums[:i] + nums[i+1:]
-            perms = _perms(new_nums, level+1)
-            for perm in perms:
+            for perm in _perms(new_nums, level+1):
                 perm.append(value)
-            result.extend(perms)
+                result.append(perm)
         return result
     
     result = _perms(nums)
