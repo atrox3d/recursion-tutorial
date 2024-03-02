@@ -4,10 +4,7 @@ def perms(nums:list, cast=tuple, duplicates=False, sort=True, reverse=True):
         if len(nums) == 1: return [nums[:]] # base case
         
         for i, value in enumerate(nums):
-            ''' in every loop value must not be inside the array '''
-            # comprehension (removes duplicates)
-            new_nums = [n for n in nums if n != value]
-            # slice
+            # in every loop value must not be inside the array
             new_nums = nums[:i] + nums[i+1:]
             perms = _perms(new_nums, level+1)
             for perm in perms:
