@@ -1,4 +1,4 @@
-def perms(nums:list, cast=tuple, duplicates=False):
+def perms(nums:list, cast=tuple, duplicates=False, sort=True, reverse=True):
     def _perms(nums: list[int], level=0) -> list[list[int]]:
         # print(f'wrong: {level, nums = }')
         result = []
@@ -24,8 +24,11 @@ def perms(nums:list, cast=tuple, duplicates=False):
 
     if not duplicates:
         result = list(set([tuple(perm) for perm in result]))
-    else:
-        result = [cast(perm) for perm in result]
+    result = [cast(perm) for perm in result]
+    if sort:
+        result = sorted(result)
+    if reverse:
+        result = list(reversed(sorted(result)))
     return result
 
 if __name__ == '__main__':
