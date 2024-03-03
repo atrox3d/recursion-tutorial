@@ -1,10 +1,12 @@
-total = 10
+total = 5
 
-for r1 in range(total+1):
-    # if total <= 0: break
-    print(f'{r1, total = }')
-    total -= 1
-    # for r2 in range(total):
-    #     if total <= 0: break
-    #     total -= 1
-    #     print(f'{r2, total = }')
+ingredients = 3
+portions = [0 for i in range(ingredients)]
+
+current = 0
+left = total
+for spoons in range(total+1):
+    if (left:=left-1): 
+        portions[current] += 1
+
+print(portions) 
