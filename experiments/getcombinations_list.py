@@ -36,7 +36,7 @@ if __name__ == '__main__':
     import sys
     import logging
 
-    combos = get_combinations(4, 3)
+    combos = get_combinations(5, 4)
     print(len(combos))
     print(combos)
 
