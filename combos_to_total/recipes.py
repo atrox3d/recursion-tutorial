@@ -22,5 +22,6 @@ def possible_recipes4(total_amount, start=1):
                 amounts.append((amount1, amount2, amount3, amount4))
     return amounts
 
-amounts = possible_recipes4(5, start=0)
-print(amounts)
+if __name__ == '__main__':
+    amounts = possible_recipes4(5, start=0)
+    print(amounts)
