@@ -22,4 +22,4 @@ def combos_for_total(total, columns, start=0):
 if __name__ == '__main__':
     logging.basicConfig(level='DEBUG', format='%(message)s')
     # print(f(5, 4))
-    print(combos_for_total(4, 2))
+    print(combos_for_total(5, 4))

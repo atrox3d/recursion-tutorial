@@ -15,5 +15,5 @@ def gencombos( target, column ):
             for row in gencombos( target-i*column, column-1 ):
                 yield row+[i]
 
-for row in gencombos( 7, 3 ):
+for row in gencombos( 5, 4 ):
     print(row)

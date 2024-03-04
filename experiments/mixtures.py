@@ -31,9 +31,10 @@ def mixtures_list(total: int, ingredients: int, level=0):
 
 
 if __name__ == '__main__':
-    mix1 = list(mixtures(4, 3))
-    mix2 = mixtures_list(4, 3)
+    mix1 = list(mixtures(5, 4))
+    mix2 = mixtures_list(5, 4)
     # print(mix2)
     # print(len(mix2))
     assert mix1 == mix2
+    print(mix1)
     print('ok')
