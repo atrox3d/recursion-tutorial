@@ -30,25 +30,39 @@ def compare(l1:list[tuple], l2:list[tuple], names: str) -> bool:
     print()
     return True
 
+def norepetitions(l1:list[tuple], name: str) -> bool:
+    if sorted(set(l1)) != sorted(l1):
+        print(f'REPETITIONS detected in {name}')
+        print()
+        return False
+    return True
+
 combos1 = list(set(combinatorics.combos_for_total(5, 4)))
 print(f'{combos1 = }', len(combos1), end='\n\n')
+norepetitions(combos1, 'combos1')
 combos2 = combinatorics_for.combos_for_total(5, 4)
 print(f'{combos2 = }', len(combos2), end='\n\n')
+norepetitions(combos2, 'combos2')
 compare(combos1, combos2, 'combos1 combos2')
 
 combos3 = list(getcombinations.get_combinations(5, 4))
 print(f'{combos3 = }', len(combos3), end='\n\n')
+norepetitions(combos3, 'combos3')
 combos4 = getcombinations_list.get_combinations(5, 4)
 print(f'{combos4 = }', len(combos4), end='\n\n')
+norepetitions(combos4, 'combos4')
 compare(combos3, combos4, 'combos3 combos4')
 
 combos5 = list(mixtures.mixtures(5, 4))
 print(f'{combos5 = }', len(combos5), end='\n\n')
+norepetitions(combos5, 'combos5')
 combos6 = mixtures.mixtures_list(5, 4)
 print(f'{combos6 = }', len(combos6), end='\n\n')
+norepetitions(combos6, 'combos6')
 compare(combos5, combos6, 'combos5 combos6')
 
 combos7 = recipes.possible_recipes4(5, start=0)
+norepetitions(combos7, 'combos7')
 print(f'{combos7 = }', len(combos7), end='\n\n')
 
 compare(combos7, combos6, 'combos7 combos6')
