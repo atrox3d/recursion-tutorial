@@ -51,5 +51,12 @@ compare(combos5, combos6, 'combos5 combos6')
 combos7 = recipes.possible_recipes4(5, start=0)
 print(f'{combos7 = }', len(combos7), end='\n\n')
 
+compare(combos7, combos6, 'combos7 combos6')
+compare(combos7, combos5, 'combos7 combos5')
+compare(combos7, combos2, 'combos7 combos2')
 
-assert combos1 == combos2 == combos3 == combos4 == combos5 == combos6 == combos7 # True
+
+assert (combos1 == combos2 == 
+        combos3 == combos4 == 
+        combos5 == combos6 == 
+        combos7), 'lists are different'

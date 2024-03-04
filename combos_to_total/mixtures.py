@@ -8,9 +8,9 @@ def mixtures(total: int, columns: int):
         left = total - i
         if columns - 1:
             for y in mixtures(left, columns - 1):
-                yield [i] + y
+                yield tuple([i]) + y
         else:
-            yield [i]
+            yield tuple([i])
 
 def mixtures_list(total: int, ingredients: int, level=0):
     if ingredients == 1:
@@ -24,9 +24,9 @@ def mixtures_list(total: int, ingredients: int, level=0):
         if ingredients - 1 > 0:
             mixes = mixtures_list(left, ingredients - 1, level+1)
             for mix in mixes:
-                combos.append([spoons] + mix)
+                combos.append(tuple([spoons]) + mix)
         else:
-            combos.append([spoons])
+            combos.append(tuple([spoons]))
     return combos
 
 
@@ -37,4 +37,5 @@ if __name__ == '__main__':
     # print(len(mix2))
     assert mix1 == mix2
     print(mix1)
+    print(mix2)
     print('ok')
