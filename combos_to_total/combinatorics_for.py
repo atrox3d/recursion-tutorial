@@ -78,6 +78,7 @@ if __name__ == '__main__':
     from pathlib import Path
     import sys
     LOGGERMETHOD = logger.debug
+    print(combos_for_total(5, 4))
     if False:
         LOGFILE = str(Path(sys.argv[0]).parent / Path(__file__).stem) + '.log'
         handlers = [
