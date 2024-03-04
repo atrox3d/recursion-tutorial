@@ -45,6 +45,7 @@ print(f'{combos2 = }', len(combos2), end='\n\n')
 norepetitions(combos2, 'combos2')
 compare(combos1, combos2, 'combos1 combos2')
 
+# TODO: check why different
 combos3 = list(getcombinations.get_combinations(5, 4))
 print(f'{combos3 = }', len(combos3), end='\n\n')
 norepetitions(combos3, 'combos3')
