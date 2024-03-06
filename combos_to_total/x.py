@@ -1,4 +1,4 @@
-def possible_recipes4(total_amount, start=1, print_steps=True):
+def possible_recipes4(total_amount, start=0, print_steps=True):
     amounts = []
     for amount1 in range(start, total_amount+1):
         rest1 = total_amount - amount1
@@ -11,9 +11,23 @@ def possible_recipes4(total_amount, start=1, print_steps=True):
                 amounts.append((amount1, amount2, amount3, amount4))
     return amounts
 
-def base(target, start):
-    for amount in range(start, target):
+def base(target, start=0):
+    # print(f'{start, target = }')
+    results = []
+    for amount in range(start, target+1):
         result = target - amount
-        print(f'{start, target = } -> {amount, result = }')
+        # print(f'{start, target = } -> {amount, result = }')
+        results.append((amount, result))
+    return results
 
-base(5, 0)
+# print(possible_recipes4(5))
+# print(base(5))
+total = 5
+for amount in range(total+1):
+    rest = total - amount
+    for t in base(rest):
+        result = (amount, *t)
+        print(rest, result)
+
+for x in possible_recipes4(5):
+    print(x)
