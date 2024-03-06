@@ -62,7 +62,7 @@ print(f'{combos6 = }', len(combos6), end='\n\n')
 norepetitions(combos6, 'combos6')
 compare(combos5, combos6, 'combos5 combos6')
 
-combos7 = recipes.possible_recipes4(5, start=0)
+combos7 = recipes.possible_recipes4(5, start=0, print_steps=False)
 norepetitions(combos7, 'combos7')
 print(f'{combos7 = }', len(combos7), end='\n\n')
 
