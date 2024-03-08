@@ -13,13 +13,12 @@ class JsonGraph:
     def load(self):
         with open(str(self.path), 'r') as jfile:
             self.data = json.load(jfile)
-        return self.data
 
 
 if __name__ == '__main__':
     jg = JsonGraph('graphs/graph.json')
-    data = jg.load()
-    print(data)
+    jg.load()
+    print(jg.data)
 
     jg.data['a'] = []
     jg.save()
