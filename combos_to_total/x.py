@@ -20,14 +20,29 @@ def base(target, start=0):
         results.append((amount, result))
     return results
 
-# print(possible_recipes4(5))
-# print(base(5))
-total = 5
-for amount in range(total+1):
-    rest = total - amount
-    for t in base(rest):
-        result = (amount, *t)
-        print(rest, result)
+def rbase(target, amount, parts, start=0):
+    if target <= amount:
+        return [(amount, 0)]
+    if parts < 0:
+        return [(target, 0)]
+        # return [(amount, target - amount)]
+    
+    result = target - amount
+    print(f'{target, parts, amount, result =}')
+    return [(amount, result)] + rbase(target, amount+1, parts-1)
 
-for x in possible_recipes4(5):
-    print(x)
+print(base(5))
+print(rbase(5, 0, 4))
+
+if False:
+    # print(possible_recipes4(5))
+    # print(base(5))
+    total = 5
+    for amount in range(total+1):
+        rest = total - amount
+        for t in base(rest):
+            result = (amount, *t)
+            print(rest, result)
+
+    for x in possible_recipes4(5):
+        print(x)
