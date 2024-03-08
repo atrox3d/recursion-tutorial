@@ -22,17 +22,27 @@ def base(target, start=0):
 
 def rbase(target, amount, parts, start=0):
     if target <= amount:
+        print(f'basecase: target <= amount')
         return [(amount, 0)]
-    if parts < 0:
-        return [(target, 0)]
+    # if parts < 0:
+        # print(f'basecase: parts < 0')
+        # return [(target, 0)]
         # return [(amount, target - amount)]
     
     result = target - amount
     print(f'{target, parts, amount, result =}')
     return [(amount, result)] + rbase(target, amount+1, parts-1)
+    # return rbase(target, amount+1, parts-1) + [(amount, result)]
 
-print(base(5))
+def rxbase(target, amount, parts, start=0):
+    if parts > 1:
+        return [target-amount] + rxbase(target, amount+1, parts-1, start)
+    else:
+        return [target-amount]
+
+# print(base(5))
 print(rbase(5, 0, 4))
+print(rxbase(5, 0, 4))
 
 if False:
     # print(possible_recipes4(5))
