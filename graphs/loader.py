@@ -67,15 +67,28 @@ class TxtGraph:
     #                                 neighbours.append[lines[y-1][x]]
     #                             case self.DOWN:
     #                                 pass
+    
     def _parse(self, lines, frontier=None):
+        def normalize(lines):
+            maxlen = max(map(len, lines))
+            for line in lines:
+                line += [' '] * (maxlen-len(line))
+            return lines
+        
+        lines = normalize(lines)
+
         for line in lines:
             print(line)
         
         ROWS = len(lines)
         r, c = 0, 0
-        stack = [lines[r][c]]
-        while len(stack):
-            current = stack.pop()
+        node_stack = [lines[r][c]]
+        coord_stack = [(r,c)]
+        visited = []
+        while len(node_stack):
+            current = node_stack.pop()
+            r, c = coord_stack.pop()
+            visited.append(current)
             print(f'{current=}')
             if current in ascii_uppercase:
                 neighbours = []
@@ -93,19 +106,27 @@ class TxtGraph:
                 if left in (self.HORIZONTAL, self.LEFT):
                     neighbour = lines[r][c-2]
                     neighbours.append(neighbour)
-                    stack.append(neighbour)
+                    if neighbour not in visited:
+                        node_stack.append(neighbour)
+                        coord_stack.append((r, c-2))
                 if up in (self.VERTICAL, self.UP):
                     neighbour = lines[r-2][c]
                     neighbours.append(neighbour)
-                    stack.append(neighbour)
+                    if neighbour not in visited:
+                        node_stack.append(neighbour)
+                        coord_stack.append((r-2, c))
                 if right in (self.HORIZONTAL, self.RIGHT):
                     neighbour = lines[r][c+2]
                     neighbours.append(neighbour)
-                    stack.append(neighbour)
+                    if neighbour not in visited:
+                        node_stack.append(neighbour)
+                        coord_stack.append((r, c+2))
                 if down in (self.VERTICAL, self.DOWN):
                     neighbour = lines[r+2][c]
                     neighbours.append(neighbour)
-                    stack.append(neighbour)
+                    if neighbour not in visited:
+                        node_stack.append(neighbour)
+                        coord_stack.append((r+2, c))
                 # input()
 
 
