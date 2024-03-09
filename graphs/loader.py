@@ -12,9 +12,13 @@ if __name__ == '__main__':
     for k, v in tg.data.items():
         print(k, ':', v)
 
-    jg = JsonGraph('graphs/graph.json')
-    jg.load()
+    jg = JsonGraph('graphs/graph.json', tg.data)
+    jg.save()
     print(jg.data)
 
-    jg.data['a'] = []
-    jg.save()
+    jg.load()
+
+    assert tg.data == jg.data
+
+    # jg.data['a'] = []
+    # jg.save()
