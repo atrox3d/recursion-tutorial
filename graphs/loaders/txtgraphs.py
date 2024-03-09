@@ -10,14 +10,14 @@ class TxtGraph:
     UP = '^'
     DOWN = 'v'
 
+    edges = HORIZONTAL + VERTICAL + LEFT + RIGHT + UP + DOWN
+
     def __init__(self, path, edges='-|<>^v', nodechars=ascii_uppercase) -> None:
         self.path = Path(path).absolute()
         self.nodechars = nodechars
-        self.edges = edges
-        self._setup_edges()
+        if self.edges != edges:
+            self._setup_edges()
         self.data = {}
-        self.rows = 0
-        self.cols = 0
 
     def _setup_edges(self):
         (
@@ -52,6 +52,7 @@ class TxtGraph:
             current = node_stack.pop()
             r, c = coord_stack.pop()
             visited.append(current)
+            
             if current in self.nodechars:
                 neighbours = []
                 self.data[current] = neighbours
@@ -76,3 +77,6 @@ class TxtGraph:
         with open(str(self.path), 'r') as file:
             lines = [list(line.strip()) for line in file.readlines()]
         self._parse(lines)
+    
+    def save(self):
+        raise NotImplementedError()
