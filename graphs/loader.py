@@ -46,22 +46,26 @@ class TxtGraph:
             for line in lines:
                 line += [' '] * (maxlen-len(line))
             return lines
-        
+
+        def process(lines, r, c, neighbours, visited, node_stack, coord_stack):
+            neighbour = lines[r][c]
+            neighbours.append(neighbour)
+            if neighbour not in visited:
+                node_stack.append(neighbour)
+                coord_stack.append((r, c))
+
         lines = normalize(lines)
 
-        # for line in lines:
-        #     print(line)
-        
         ROWS = len(lines)
         r, c = 0, 0
         node_stack = [lines[r][c]]
         coord_stack = [(r,c)]
         visited = []
+
         while len(node_stack):
             current = node_stack.pop()
             r, c = coord_stack.pop()
             visited.append(current)
-            # print(f'{current=}')
             if current in ascii_uppercase:
                 neighbours = []
                 self.data[current] = neighbours
@@ -71,35 +75,15 @@ class TxtGraph:
                 up = lines[r-1][c] if r else None
                 right = lines[r][c+1] if c < COLS-1 else None
                 down = lines[r+1][c] if r < ROWS-1 else None 
-                # print(f'{left = }')
-                # print(f'{up = }')
-                # print(f'{right = }')
-                # print(f'{down = }')
+
                 if left in (self.HORIZONTAL, self.LEFT):
-                    neighbour = lines[r][c-2]
-                    neighbours.append(neighbour)
-                    if neighbour not in visited:
-                        node_stack.append(neighbour)
-                        coord_stack.append((r, c-2))
+                    process(lines, r, c-2, neighbours, visited, node_stack, coord_stack)
                 if up in (self.VERTICAL, self.UP):
-                    neighbour = lines[r-2][c]
-                    neighbours.append(neighbour)
-                    if neighbour not in visited:
-                        node_stack.append(neighbour)
-                        coord_stack.append((r-2, c))
+                    process(lines, r-2, c, neighbours, visited, node_stack, coord_stack)
                 if right in (self.HORIZONTAL, self.RIGHT):
-                    neighbour = lines[r][c+2]
-                    neighbours.append(neighbour)
-                    if neighbour not in visited:
-                        node_stack.append(neighbour)
-                        coord_stack.append((r, c+2))
+                    process(lines, r, c+2, neighbours, visited, node_stack, coord_stack)
                 if down in (self.VERTICAL, self.DOWN):
-                    neighbour = lines[r+2][c]
-                    neighbours.append(neighbour)
-                    if neighbour not in visited:
-                        node_stack.append(neighbour)
-                        coord_stack.append((r+2, c))
-                # input()
+                    process(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
 
 
     def load(self):
