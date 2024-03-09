@@ -25,8 +25,9 @@ class TxtGraph:
     UP = '^'
     DOWN = 'v'
 
-    def __init__(self, path, edges='-|<>^v') -> None:
+    def __init__(self, path, edges='-|<>^v', nodechars=ascii_uppercase) -> None:
         self.path = Path(path).absolute()
+        self.nodechars = nodechars
         self.edges = edges
         self._setup_edges()
         self.data = {}
@@ -66,7 +67,7 @@ class TxtGraph:
             current = node_stack.pop()
             r, c = coord_stack.pop()
             visited.append(current)
-            if current in ascii_uppercase:
+            if current in self.nodechars:
                 neighbours = []
                 self.data[current] = neighbours
                 COLS = len(lines[r])
