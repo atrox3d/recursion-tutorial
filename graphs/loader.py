@@ -39,35 +39,7 @@ class TxtGraph:
             self.LEFT, self.RIGHT,
             self.UP, self.DOWN
         ) = list(self.edges)
-    
-    def _get_valid_coords(self, r, c):
-        coords = [  (r, c) for r, c in 
-                    [(r+y, c+x) for y in range(-1, 2) for x in range(-1, 2) if abs(y)!=abs(x)]
-                    if 0 <= r <= self.rows and 0 <= c <= self.cols
-                ]
-        return coords
 
-    # def _parse(self, lines):
-    #     self.rows = len(lines)
-    #     self.cols = len(lines[0])
-    #     for r, row in enumerate(lines):
-    #         for c, char in enumerate(row):
-    #             if char in ascii_uppercase:
-    #                 self.data[char] = {'coords': (r, c), 'neighbours':[]}
-    #                 neighbours = self.data[char]['neighbours']
-    #                 for y, x in self._get_valid_coords(r, c):
-    #                     edge = lines[y][x]
-    #                     if edge in self.edges:
-    #                         match edge:
-    #                             case self.LEFT:
-    #                                 neighbours.append[lines[y][x-1]]
-    #                             case self.RIGHT:
-    #                                 pass
-    #                             case self.UP:
-    #                                 neighbours.append[lines[y-1][x]]
-    #                             case self.DOWN:
-    #                                 pass
-    
     def _parse(self, lines, frontier=None):
         def normalize(lines):
             maxlen = max(map(len, lines))
@@ -77,8 +49,8 @@ class TxtGraph:
         
         lines = normalize(lines)
 
-        for line in lines:
-            print(line)
+        # for line in lines:
+        #     print(line)
         
         ROWS = len(lines)
         r, c = 0, 0
@@ -89,7 +61,7 @@ class TxtGraph:
             current = node_stack.pop()
             r, c = coord_stack.pop()
             visited.append(current)
-            print(f'{current=}')
+            # print(f'{current=}')
             if current in ascii_uppercase:
                 neighbours = []
                 self.data[current] = neighbours
@@ -99,10 +71,10 @@ class TxtGraph:
                 up = lines[r-1][c] if r else None
                 right = lines[r][c+1] if c < COLS-1 else None
                 down = lines[r+1][c] if r < ROWS-1 else None 
-                print(f'{left = }')
-                print(f'{up = }')
-                print(f'{right = }')
-                print(f'{down = }')
+                # print(f'{left = }')
+                # print(f'{up = }')
+                # print(f'{right = }')
+                # print(f'{down = }')
                 if left in (self.HORIZONTAL, self.LEFT):
                     neighbour = lines[r][c-2]
                     neighbours.append(neighbour)
