@@ -20,7 +20,7 @@ def base(target, start=0):
         results.append((amount, result))
     return results
 
-def rbase(target, amount, parts, start=0):
+def rbase(target, amount, parts, start=0, print=lambda *args, **kwargs:None):
     if target <= amount:
         print(f'basecase: target <= amount')
         return [(amount, 0)]
@@ -34,18 +34,18 @@ def rbase(target, amount, parts, start=0):
     return [(amount, result)] + rbase(target, amount+1, parts-1)
     # return rbase(target, amount+1, parts-1) + [(amount, result)]
 
-def rloop(index, target):
+def rloop(index, target, print=lambda *args, **kwargs:None):
     '''recursive version of a for loop'''
     if index < target:
         print(index)
         return [index] + rloop(index+1, target)
     return []
 
-print(rloop(0, 5))
-# print(base(5))
-# print(rbase(5, 0, 4), end='\n\n')
+print('possible_recipes4: ', possible_recipes4(5), end='\n\n')
+print('base             : ', base(5), end='\n\n')
+print('rbase            : ', rbase(5, 0, 4), end='\n\n')
+print('rloop            : ', rloop(0, 5), end='\n\n')
 # print(rxbase(5, 0, 4), end='\n\n')
-# print(possible_recipes4(5), end='\n\n')
 
 if False:
     # print(possible_recipes4(5))
