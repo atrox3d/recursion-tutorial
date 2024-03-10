@@ -1,9 +1,14 @@
 from loaders.jsongraph import JsonGraph
 from loaders.txtgraphs import TxtGraph
 
-tg = TxtGraph('graphs/graph.txt')
-tg.load()
+def depthfirst(graph, source):
+    ...
 
-print(tg.data)
 
-# def dfs(graph)
+if __name__ == '__main__':
+    tg = TxtGraph('graphs/graph.txt')
+    graph = tg.load()
+
+    for k, v in graph.items():
+        print(f'{k}: {v}')
+
