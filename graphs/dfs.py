@@ -5,3 +5,5 @@ tg = TxtGraph('graphs/graph.txt')
 tg.load()
 
 print(tg.data)
+
+# def dfs(graph)

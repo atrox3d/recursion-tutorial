@@ -1,5 +1,5 @@
-A-E-F
-| | v
-B D G-H-I
-v   |
-C   L
+A>C
+v v
+B E
+v
+D>F

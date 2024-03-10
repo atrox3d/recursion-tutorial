@@ -39,6 +39,12 @@ class TxtGraph:
             if neighbour not in visited:
                 node_stack.append(neighbour)
                 coord_stack.append((r, c))
+        
+        def sort(data):
+            newdata = {}
+            for k in sorted(data):
+                newdata[k] = sorted(data[k])
+            self.data = newdata
 
         lines = normalize(lines)
 
@@ -52,7 +58,7 @@ class TxtGraph:
             current = node_stack.pop()
             r, c = coord_stack.pop()
             visited.append(current)
-            
+
             if current in self.nodechars:
                 neighbours = []
                 self.data[current] = neighbours
@@ -71,7 +77,7 @@ class TxtGraph:
                     process(lines, r, c+2, neighbours, visited, node_stack, coord_stack)
                 if down in (self.VERTICAL, self.DOWN):
                     process(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
-
+        sort(self.data)
 
     def load(self):
         with open(str(self.path), 'r') as file:
