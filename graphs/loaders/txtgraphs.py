@@ -20,20 +20,25 @@ class TxtGraph:
         self.data = {}
 
     def _setup_edges(self):
+        ''' convert string to class contants of graph edges '''
         (
             self.HORIZONTAL, self.VERTICAL,
             self.LEFT, self.RIGHT,
             self.UP, self.DOWN
         ) = list(self.edges)
 
-    def _parse(self, lines):
+    def _parse(self, lines:list[list[str]]):
+        ''' parse matrix of chars to graph dict '''
+
         def normalize_matrix(lines):
+            ''' add spaces to each line to make lines even '''
             maxlen = max(map(len, lines))
             for line in lines:
                 line += [' '] * (maxlen-len(line))
             return lines
 
         def process_node(lines, r, c, neighbours, visited, node_stack, coord_stack):
+            ''' updates neighbours of node and control stacks '''
             neighbour = lines[r][c]
             neighbours.append(neighbour)
             if neighbour not in visited:
@@ -46,10 +51,11 @@ class TxtGraph:
         lines = normalize_matrix(lines)
 
         ROWS = len(lines)
+        COLS = len(lines[0])
         r, c = 0, 0
 
-        node_stack = [lines[r][c]]
-        coord_stack = [(r,c)]
+        node_stack = [lines[r][c]]  # push first node
+        coord_stack = [(r,c)]       # push first node coords
         visited = []
 
         while len(node_stack):
@@ -57,16 +63,19 @@ class TxtGraph:
             r, c = coord_stack.pop()
             visited.append(current)
 
+            # process only nodes, not edges
             if current in self.nodechars:
+                # default node structure
                 neighbours = []
                 self.data[current] = neighbours
-                COLS = len(lines[r])
-
+                
+                # check 4 directions
                 left = lines[r][c-1] if c else None
                 up = lines[r-1][c] if r else None
                 right = lines[r][c+1] if c < COLS-1 else None
                 down = lines[r+1][c] if r < ROWS-1 else None
 
+                # process neighbours if edges found
                 if left in (self.HORIZONTAL, self.LEFT):
                     process_node(lines, r, c-2, neighbours, visited, node_stack, coord_stack)
                 if up in (self.VERTICAL, self.UP):
