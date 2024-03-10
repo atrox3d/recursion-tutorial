@@ -26,30 +26,28 @@ class TxtGraph:
             self.UP, self.DOWN
         ) = list(self.edges)
 
-    def _parse(self, lines, frontier=None):
-        def normalize(lines):
+    def _parse(self, lines):
+        def normalize_matrix(lines):
             maxlen = max(map(len, lines))
             for line in lines:
                 line += [' '] * (maxlen-len(line))
             return lines
 
-        def process(lines, r, c, neighbours, visited, node_stack, coord_stack):
+        def process_node(lines, r, c, neighbours, visited, node_stack, coord_stack):
             neighbour = lines[r][c]
             neighbours.append(neighbour)
             if neighbour not in visited:
                 node_stack.append(neighbour)
                 coord_stack.append((r, c))
         
-        def sort(data):
-            newdata = {}
-            for k in sorted(data):
-                newdata[k] = sorted(data[k])
-            self.data = newdata
+        def sort_graph(data):
+            return {k:sorted(v) for k, v in sorted(data.items())}
 
-        lines = normalize(lines)
+        lines = normalize_matrix(lines)
 
         ROWS = len(lines)
         r, c = 0, 0
+
         node_stack = [lines[r][c]]
         coord_stack = [(r,c)]
         visited = []
@@ -70,14 +68,16 @@ class TxtGraph:
                 down = lines[r+1][c] if r < ROWS-1 else None
 
                 if left in (self.HORIZONTAL, self.LEFT):
-                    process(lines, r, c-2, neighbours, visited, node_stack, coord_stack)
+                    process_node(lines, r, c-2, neighbours, visited, node_stack, coord_stack)
                 if up in (self.VERTICAL, self.UP):
-                    process(lines, r-2, c, neighbours, visited, node_stack, coord_stack)
+                    process_node(lines, r-2, c, neighbours, visited, node_stack, coord_stack)
                 if right in (self.HORIZONTAL, self.RIGHT):
-                    process(lines, r, c+2, neighbours, visited, node_stack, coord_stack)
+                    process_node(lines, r, c+2, neighbours, visited, node_stack, coord_stack)
                 if down in (self.VERTICAL, self.DOWN):
-                    process(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
-        sort(self.data)
+                    process_node(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
+        
+        self.data = sort_graph(self.data)
+        return self.data
 
     def load(self):
         with open(str(self.path), 'r') as file:
