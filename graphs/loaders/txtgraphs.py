@@ -86,12 +86,12 @@ class TxtGraph:
                     process_node(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
         
         self.data = sort_graph(self.data)
-        return self.data
 
     def load(self):
         with open(str(self.path), 'r') as file:
             lines = [list(line.strip()) for line in file.readlines()]
         self._parse(lines)
+        return self.data
     
     def save(self):
         raise NotImplementedError()
