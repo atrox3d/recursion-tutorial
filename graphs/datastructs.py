@@ -14,10 +14,8 @@ class Stack(list):
 
 
 if __name__ == '__main__':
-    stack = Stack()
-    queue = Queue()
-
     print('test stack')
+    stack = Stack()
     for i in range(5):
         print(f'push {i}')
         stack.push(i)
@@ -29,6 +27,7 @@ if __name__ == '__main__':
     print()
 
     print('test queue')
+    queue = Queue()
     for i in range(5):
         print(f'push {i}')
         queue.push(i)
