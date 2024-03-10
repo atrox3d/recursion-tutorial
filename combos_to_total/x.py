@@ -3,6 +3,7 @@ def possible_recipes4(total_amount, start=0, print_steps=True):
     for amount1 in range(start, total_amount+1):
         rest1 = total_amount - amount1
         for amount2 in range(start, rest1+1):
+            amounts.append(('----'))
             rest2 = rest1 - amount2
             for amount3 in range(start, rest2+1):
                 amount4 = rest2 - amount3
@@ -41,10 +42,13 @@ def rloop(index, target, print=lambda *args, **kwargs:None):
         return [index] + rloop(index+1, target)
     return []
 
-print('possible_recipes4: ', possible_recipes4(5), end='\n\n')
-print('base             : ', base(5), end='\n\n')
-print('rbase            : ', rbase(5, 0, 4), end='\n\n')
-print('rloop            : ', rloop(0, 5), end='\n\n')
+print('possible_recipes4(5): ')
+for x in possible_recipes4(5):
+    print(x)
+print()
+print('base(5)             : ', base(5), end='\n\n')
+print('rbase(5, 0, 4)      : ', rbase(5, 0, 4), end='\n\n')
+print('rloop(0, 5)         : ', rloop(0, 5), end='\n\n')
 # print(rxbase(5, 0, 4), end='\n\n')
 
 if False:
