@@ -1,10 +1,6 @@
+from datastructs import Stack
 from loaders.jsongraph import JsonGraph
 from loaders.txtgraphs import TxtGraph
-
-class Stack(list):
-    ''' adds alias method push to list '''
-    def push(self, *args, **kwargs):
-        return self.append(*args, **kwargs)
 
 def depthfirst(graph: list[list[str]], source:str, print=lambda *args, **kwargs:None):
     stack = Stack([source])                 # start from source
