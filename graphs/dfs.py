@@ -1,15 +1,19 @@
 from loaders.jsongraph import JsonGraph
 from loaders.txtgraphs import TxtGraph
 
-def depthfirst(graph: list[list[str]], source:str, print=lambda *args, **kwargs:None):
-    stack = [source]
+class Stack(list):
+    def push(self, *args, **kwargs):
+        return self.append(*args, **kwargs)
 
-    while len(stack):
-        current = stack.pop()
+def depthfirst(graph: list[list[str]], source:str, print=lambda *args, **kwargs:None):
+    stack = Stack([source])                        # start from source
+
+    while len(stack):                       # process all stack
+        current = stack.pop()               # pop next node
         print(current)
 
-        for neighbour in graph[current]:
-            stack.append(neighbour)
+        for neighbour in graph[current]:    # push node neighbours
+            stack.push(neighbour)
         
 
 if __name__ == '__main__':
