@@ -15,8 +15,8 @@ def breadthfirst(graph: list[list[str]], source:str, print=lambda *args, **kwarg
 
 if __name__ == '__main__':
     tg = TxtGraph('graphs/graph.txt')
-    graph = tg.load()
-
+    tg.load()
+    graph = tg.sorted(keys=True)
     for k, v in graph.items():
         print(f'{k}: {v}')
     

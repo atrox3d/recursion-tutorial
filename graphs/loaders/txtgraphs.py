@@ -47,9 +47,7 @@ class TxtGraph:
                 node_stack.append(neighbour)
                 coord_stack.append((r, c))
         
-        def sort_graph(data: dict) -> dict:
-            return {k:sorted(v) for k, v in sorted(data.items())}
-
+        # def sort_graph(data: dict, sortkeys=False, sortvalues=False, sortall=False) -> dict:
         lines = normalize_matrix(lines)
 
         ROWS = len(lines)
@@ -86,8 +84,14 @@ class TxtGraph:
                     process_node(lines, r, c+2, neighbours, visited, node_stack, coord_stack)
                 if down in (self.VERTICAL, self.DOWN):
                     process_node(lines, r+2, c, neighbours, visited, node_stack, coord_stack)
-        
-        self.data = sort_graph(self.data)
+
+    def sorted(self, keys=False, values=False, all=False):
+        if keys:
+            return {k:v for k, v in sorted(self.data.items())}
+        if values:
+            return {k:sorted(v) for k, v in self.data.items()}
+        if all:
+            return {k:sorted(v) for k, v in sorted(self.data.items())}
 
     def load(self) -> dict:
         with open(str(self.path), 'r') as file:
