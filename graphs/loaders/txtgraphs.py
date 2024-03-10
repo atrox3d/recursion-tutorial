@@ -12,14 +12,14 @@ class TxtGraph:
 
     edges = HORIZONTAL + VERTICAL + LEFT + RIGHT + UP + DOWN
 
-    def __init__(self, path, edges='-|<>^v', nodechars=ascii_uppercase) -> None:
+    def __init__(self, path: str, edges: str='-|<>^v', nodechars: str=ascii_uppercase) -> None:
         self.path = Path(path).absolute()
         self.nodechars = nodechars
         if self.edges != edges:
             self._setup_edges()
         self.data = {}
 
-    def _setup_edges(self):
+    def _setup_edges(self) -> None:
         ''' convert string to class contants of graph edges '''
         (
             self.HORIZONTAL, self.VERTICAL,
@@ -27,7 +27,7 @@ class TxtGraph:
             self.UP, self.DOWN
         ) = list(self.edges)
 
-    def _parse(self, lines:list[list[str]]):
+    def _parse(self, lines: list[list[str]]) -> None:
         ''' parse matrix of chars to graph dict '''
 
         def normalize_matrix(lines):
@@ -37,7 +37,9 @@ class TxtGraph:
                 line += [' '] * (maxlen-len(line))
             return lines
 
-        def process_node(lines, r, c, neighbours, visited, node_stack, coord_stack):
+        def process_node(lines: list[list[str]], r: int, c: int, 
+                         neighbours: list, visited: list, 
+                         node_stack: list, coord_stack: list) -> None:
             ''' updates neighbours of node and control stacks '''
             neighbour = lines[r][c]
             neighbours.append(neighbour)
@@ -45,7 +47,7 @@ class TxtGraph:
                 node_stack.append(neighbour)
                 coord_stack.append((r, c))
         
-        def sort_graph(data):
+        def sort_graph(data: dict) -> dict:
             return {k:sorted(v) for k, v in sorted(data.items())}
 
         lines = normalize_matrix(lines)
@@ -87,7 +89,7 @@ class TxtGraph:
         
         self.data = sort_graph(self.data)
 
-    def load(self):
+    def load(self) -> dict:
         with open(str(self.path), 'r') as file:
             lines = [list(line.strip()) for line in file.readlines()]
         self._parse(lines)
