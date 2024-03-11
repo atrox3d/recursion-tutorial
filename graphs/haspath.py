@@ -17,6 +17,7 @@ def dfs_haspath(graph, source, dest, print=dontprint):
 
 def bfs_haspath(graph, source, dest, print=dontprint):
     queue = Queue(source)
+    
     while len(queue):
         current = queue.shift()
         if current == dest:
@@ -25,6 +26,7 @@ def bfs_haspath(graph, source, dest, print=dontprint):
         for neighbour in graph[current]:
             print(f'BFS: from {current} to {neighbour}')
             queue.push(neighbour)
+    
     return False
 
 if __name__ == '__main__':
