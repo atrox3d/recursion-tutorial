@@ -13,8 +13,12 @@ class JsonGraph:
 
     def print(self, data=None, indent=None):
         data = data if data is None else self.data
-        print(json.dumps(data, indent=indent))
-
+        # print(json.dumps(data, indent=indent))
+        print('{')
+        for k in data:
+            print(f'    {k!r}: {data[k]!r}')
+        print('}')
+        
     def load(self) -> dict:
         with open(str(self.path), 'r') as file:
             self.data = json.load(file)
