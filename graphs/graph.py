@@ -5,7 +5,6 @@ from loaders.txtgraphs import TxtGraph
 
 class GraphStrategy(ABC):
     store: Queue | Stack
-
     @abstractmethod
     def get():
         pass
@@ -23,7 +22,6 @@ class GraphStrategy(ABC):
     
 class BreadthFirstStrategy(GraphStrategy):
     store = Queue()
-
     def get(self):
         return self.store.shift()
     
@@ -32,22 +30,21 @@ class BreadthFirstStrategy(GraphStrategy):
 
 class DepththFirstStrategy(GraphStrategy):
     store = Stack()
-
     def get(self):
         return self.store.pop()
     
     def put(self, value):
         self.store.push(value)
 
-def walk(graph: list[list], source, strategy: GraphStrategy):
-    strategy.put(source)
+def walk(graph: list[list], source, store: GraphStrategy):
+    store.put(source)
 
-    while len(strategy):
-        current = strategy.get()
+    while len(store):
+        current = store.get()
         print(current)
-
         for neighbour in graph[current]:    # push node neighbours
-            strategy.put(neighbour)
+            store.put(neighbour)
+
 
 if __name__ == '__main__':
     tg = TxtGraph('graphs/graph.txt')
@@ -55,6 +52,7 @@ if __name__ == '__main__':
     graph = tg.sorted(keys=True)
     for k, v in graph.items():
         print(f'{k}: {v}')
+    print()
     
     walk(graph, 'A', DepththFirstStrategy())
     print()
